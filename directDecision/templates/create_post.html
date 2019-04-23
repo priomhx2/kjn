@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+
+  <!-- submits the post form directly onto the web page -->
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+
+        <!-- lengend argument is passed in  -->
+        <!-- form is populated by current time data of post -->
+          <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="heading">
+            <div class="form-group">
+                <font color="white">{{ form.title.label(class="form-control-label") }}</font>
+                {% if form.title.errors %}
+                    <font color="white">{{ form.title(class="form-control form-control-lg is-invalid") }}</font>
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+          </div>
+
+          <!-- identifies that the post created is done by the correct user  -->
+            <div class="form-group">
+                <font color="white">{{ form.content.label(class="form-control-label") }}</font>
+                {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.content(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+    <style>
+      body {background :url(../static/images/back1.jpg)}
+    </style>
+</head>
+{% endblock content %}
